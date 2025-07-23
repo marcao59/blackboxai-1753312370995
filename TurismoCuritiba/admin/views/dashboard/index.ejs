@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h3>
+                    <i class="fas fa-map-marked-alt"></i>
+                    Turismo Curitiba
+                </h3>
+            </div>
+            
+            <div class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="/dashboard" class="<%= currentPage === 'dashboard' ? 'active' : '' %>">
+                            <i class="fas fa-tachometer-alt"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/tourist-points" class="<%= currentPage === 'tourist-points' ? 'active' : '' %>">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Pontos Turísticos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/events" class="<%= currentPage === 'events' ? 'active' : '' %>">
+                            <i class="fas fa-calendar-alt"></i>
+                            Eventos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/users" class="<%= currentPage === 'users' ? 'active' : '' %>">
+                            <i class="fas fa-users"></i>
+                            Usuários
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/reviews" class="<%= currentPage === 'reviews' ? 'active' : '' %>">
+                            <i class="fas fa-star"></i>
+                            Avaliações
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/settings" class="<%= currentPage === 'settings' ? 'active' : '' %>">
+                            <i class="fas fa-cog"></i>
+                            Configurações
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="sidebar-toggle d-md-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Dashboard</h1>
+                </div>
+                
+                <div class="topbar-right">
+                    <div class="user-menu">
+                        <a href="#" class="user-menu-toggle">
+                            <i class="fas fa-user-circle"></i>
+                            <%= adminName %>
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        
+                        <div class="user-menu-dropdown">
+                            <a href="/dashboard/settings">
+                                <i class="fas fa-user-cog"></i>
+                                Meu Perfil
+                            </a>
+                            <a href="/dashboard/settings">
+                                <i class="fas fa-cog"></i>
+                                Configurações
+                            </a>
+                            <div style="border-top: 1px solid #dee2e6; margin: 0.5rem 0;"></div>
+                            <a href="/auth/logout">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Sair
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Welcome Section -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2>Bem-vindo, <%= adminName %>!</h2>
+                                <p class="text-muted">
+                                    Gerencie o conteúdo do aplicativo Turismo Curitiba através deste painel administrativo.
+                                    Aqui você pode adicionar, editar e remover pontos turísticos, eventos e muito mais.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card" data-stat="tourist-points">
+                        <div class="stat-icon primary">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>0</h3>
+                            <p>Pontos Turísticos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card" data-stat="events">
+                        <div class="stat-icon success">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>0</h3>
+                            <p>Eventos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card" data-stat="users">
+                        <div class="stat-icon info">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>0</h3>
+                            <p>Usuários</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card" data-stat="reviews">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>0</h3>
+                            <p>Avaliações</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Ações Rápidas</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex flex-column gap-3">
+                                    <a href="/dashboard/tourist-points/add" class="btn btn-primary">
+                                        <i class="fas fa-plus"></i>
+                                        Adicionar Ponto Turístico
+                                    </a>
+                                    <a href="/dashboard/events/add" class="btn btn-success">
+                                        <i class="fas fa-plus"></i>
+                                        Adicionar Evento
+                                    </a>
+                                    <a href="/dashboard/reviews" class="btn btn-info">
+                                        <i class="fas fa-eye"></i>
+                                        Moderar Avaliações
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Atividade Recente</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="activity-feed">
+                                    <div class="activity-item">
+                                        <div class="activity-icon bg-primary">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <p><strong>Sistema iniciado</strong></p>
+                                            <small class="text-muted">Painel administrativo carregado com sucesso</small>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="activity-item">
+                                        <div class="activity-icon bg-success">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <p><strong>Login realizado</strong></p>
+                                            <small class="text-muted">Administrador <%= adminName %> fez login</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- System Information -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Informações do Sistema</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h5>Versão do Sistema</h5>
+                                        <p class="text-muted">1.0.0</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5>Banco de Dados</h5>
+                                        <p class="text-muted">Firebase Firestore</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5>Última Atualização</h5>
+                                        <p class="text-muted" id="last-update">Carregando...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Alert Container -->
+    <div id="alert-container"></div>
+    
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>
+    
+    <script>
+        // Update last update time
+        document.getElementById('last-update').textContent = new Date().toLocaleString('pt-BR');
+        
+        // Add some custom styling for activity feed
+        const style = document.createElement('style');
+        style.textContent = `
+            .activity-feed {
+                max-height: 300px;
+                overflow-y: auto;
+            }
+            
+            .activity-item {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 1rem;
+                padding-bottom: 1rem;
+                border-bottom: 1px solid #f8f9fa;
+            }
+            
+            .activity-item:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+            
+            .activity-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 1rem;
+                color: white;
+                font-size: 0.875rem;
+            }
+            
+            .activity-content {
+                flex: 1;
+            }
+            
+            .activity-content p {
+                margin: 0 0 0.25rem 0;
+                font-size: 0.9rem;
+            }
+            
+            .gap-3 {
+                gap: 1rem;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
